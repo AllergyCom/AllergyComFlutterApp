@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:minip/Pages/onbording.dart';
 import 'package:minip/providers/FoodAdditiveProvider.dart';
@@ -15,53 +14,36 @@ import 'package:provider/provider.dart';
 import 'package:minip/Pages/User.dart';
 import 'package:minip/Pages/MyhomePageWelcome.dart';
 
-
 void main() {
-  runApp(
-       MyApp()
-  );
+  runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
-   TabController _controller;
+  TabController _controller;
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers:[
+      providers: [
         ChangeNotifierProvider(create: (_) => ModelProvider()),
-    ChangeNotifierProvider(create: (_)=>ModelRecipeProvider()),
-          ChangeNotifierProvider(create: (_)=>FoodAdditivePeovider()),
-
-
-        ],
-      child:MaterialApp(
+        ChangeNotifierProvider(create: (_) => ModelRecipeProvider()),
+        ChangeNotifierProvider(create: (_) => FoodAdditivePeovider()),
+      ],
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home : MyhomePageWelcome(),
+        home: MyhomePageWelcome(),
         theme: ThemeData.light().copyWith(
           colorScheme: ColorScheme.fromSwatch(accentColor: Colors.black54),
         ),
         initialRoute: "./onbording",
         routes: {
-          "./onbording":(context)=>onbording(),
-          "./MainPage":(context)=> MainPage(),
-          "./Home_page" :(context) => Home_page(),
-          "./MyHomeWelcomePage":(context)=>MyhomePageWelcome(),
-          "./Issued_book" :(context) => recipes_page(),
-          "./SignIn" :(context) => SignIN_page(),
-          './welcome':(context)=>const Welcome(),
-          './User':(context)=>const User(),
-          "./SignOut" :(context) => SignOut_page(),
+          "./onbording": (context) => onbording(),
+          "./MainPage": (context) => MainPage(),
+          "./Home_page": (context) => Home_page(),
+          "./MyHomeWelcomePage": (context) => MyhomePageWelcome(),
+          './welcome': (context) => const Welcome(),
+          './User': (context) => User(),
         },
       ),
     );
-
-
-
   }
 }
-
-
-
-
-
-
-

@@ -5,6 +5,7 @@ import 'package:minip/Pages/Home_page.dart';
 import 'package:minip/Pages/recipes_page.dart';
 
 import 'User.dart';
+
 class MainPage extends StatefulWidget {
   final age;
   final height;
@@ -12,13 +13,22 @@ class MainPage extends StatefulWidget {
   final gender;
   final pref;
   final mealtype;
-  const MainPage({Key key ,  @required this.age,@required this.height,@required this.weight,@required this.gender,@required this.pref, this.mealtype}) : super(key: key);
+  const MainPage(
+      {Key key,
+      @required this.age,
+      @required this.height,
+      @required this.weight,
+      @required this.gender,
+      @required this.pref,
+      this.mealtype})
+      : super(key: key);
 
   @override
   _MainPageState createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin{
+class _MainPageState extends State<MainPage>
+    with SingleTickerProviderStateMixin {
   bool _loading = false;
   TabController _controller;
   @override
@@ -28,9 +38,12 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     _loading = true;
     _controller = TabController(length: 4, vsync: this);
     _controller.addListener(() {
-      setState(() {_loading = false;});
+      setState(() {
+        _loading = false;
+      });
     });
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -41,67 +54,58 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
+      appBar: AppBar(
         centerTitle: true,
-        title: Text("AllergyCom",style: GoogleFonts.acme(
-            textStyle: TextStyle(
-              fontSize: 25.0,
-              color: Colors.black54,
-              fontFamily: 'Pacifico',
-              fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 0.3,
-            )),
+        title: Text(
+          "AllergyCom",
+          style: GoogleFonts.acme(
+              textStyle: TextStyle(
+            fontSize: 25.0,
+            color: Colors.black54,
+            fontFamily: 'Pacifico',
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight.w400,
+            letterSpacing: 0.3,
+          )),
         ),
-          backgroundColor: Colors.white,
-        bottom: TabBar(controller: _controller,tabs: [
-          Tab(
-            child: Text(
-              "Diet",
-              style: TextStyle(color: Colors.black54),
+        backgroundColor: Colors.white,
+        bottom: TabBar(
+          controller: _controller,
+          tabs: [
+            Tab(
+              child: Text(
+                "Diet",
+                style: TextStyle(color: Colors.black54),
+              ),
             ),
-
-          ),
-          Tab(
-            child: Text(
-              "Tips",
-              style: TextStyle(color: Colors.black54),
+            Tab(
+              child: Text(
+                "Tips",
+                style: TextStyle(color: Colors.black54),
+              ),
             ),
-
-          ),
-          Tab(
-            child: Text(
-              "Recipes",
-              style: TextStyle(color: Colors.black54),
+            Tab(
+              child: Text(
+                "Recipes",
+                style: TextStyle(color: Colors.black54),
+              ),
             ),
-
-
-          ),
-          Tab(
-            child: Text(
-            "Additives",
-              style: TextStyle(color: Colors.black54),
+            Tab(
+              child: Text(
+                "Additives",
+                style: TextStyle(color: Colors.black54),
+              ),
             ),
-
-
-          ),
-
-        ],),
+          ],
+        ),
       ),
-      body: TabBarView(
-        controller: _controller,
-          children: [
-            User(
-              height: widget.height,
-              weight: widget.weight,
-              pref: widget.pref,
-              gender: widget.gender,
-              age: widget.age,
-
-            ),
-            Home_page(loading: _loading),
-            recipes_page(loading: _loading,),
-            FoodAdditive_Page()
+      body: TabBarView(controller: _controller, children: [
+        User(),
+        Home_page(loading: _loading),
+        recipes_page(
+          loading: _loading,
+        ),
+        FoodAdditive_Page()
       ]),
     );
   }
