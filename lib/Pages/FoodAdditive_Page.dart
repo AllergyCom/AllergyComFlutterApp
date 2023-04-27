@@ -29,98 +29,105 @@ class _FoodAdditive_PageState extends State<FoodAdditive_Page> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          child: new Card(
-            color: Colors.white,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            margin: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
-            child: Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: ListTile(
-                title: TextField(
-                  controller: controller,
-                  decoration: InputDecoration(
+    return Scaffold(
+      backgroundColor: Colors.grey.shade200,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(4.0,15,4.0,0),
+                child: Container(
+                  child: new Card(
+                    color: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child:  ListTile(
+                        title: TextField(
+                          controller: controller,
+                          decoration: InputDecoration(
 
-                    border: InputBorder.none,
-                    prefixIcon: Icon(Icons.search),
-                    filled: false,
-                    hintText: 'search',
+                            border: InputBorder.none,
+                            prefixIcon: Icon(Icons.search),
+                            filled: false,
+                            hintText: 'search',
+                          ),
+                          onChanged: onChangedtext,
+                        ),
+                        trailing: new IconButton(
+                          icon: new Icon(Icons.cancel),
+                          onPressed: () {
+                            controller.clear();
+                            onChangedtext('');
+                          },
+                        ),
+                      ),
+
                   ),
-                  onChanged: onChangedtext,
-                ),
-                trailing: new IconButton(
-                  icon: new Icon(Icons.cancel),
-                  onPressed: () {
-                    controller.clear();
-                    onChangedtext('');
-                  },
                 ),
               ),
-            ),
+              SizedBox(
+                height: 15.0,
+              ),
+              new Expanded(
+                child: _searchresult.length != 0 || controller.text.isNotEmpty
+                    ? new ListView.builder(
+                    itemCount: _searchresult.length,
+                    itemBuilder: (context, i) {
+                      return Card(
+                        margin: EdgeInsets.all(12.0),
+                        elevation: 5.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: ListTile(
+                            title: Text(_searchresult[i].description != null
+                                ? _searchresult[i].description
+                                : 'ff'),
+                            subtitle: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 3.0, vertical: 4),
+                              child: Text(_searchresult[i].category),
+                            ),
+                            leading: Text(_searchresult[i].number),
+                            trailing: Text(_searchresult[i].status),
+                            dense: true,
+                          ),
+                        ),
+                      );
+                    })
+                    : ListView.builder(
+                    itemCount: _userDetails.length,
+                    itemBuilder: (context, i) {
+                      return Card(
+                        margin: EdgeInsets.all(12.0),
+                        elevation: 5.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: ListTile(
+                            title: Text(_userDetails[i].description.toString()),
+                            subtitle: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 3.0,horizontal:4.0 ),
+                              child: Text(_userDetails[i].category.toString()),
+                            ),
+
+                            leading: Text(_userDetails[i].number),
+                            trailing: Text(_userDetails[i].status),
+                            dense: true,
+                          ),
+                        ),
+                      );
+                    }),
+              ),
+            ],
           ),
         ),
-        SizedBox(
-          height: 15.0,
-        ),
-        new Expanded(
-          child: _searchresult.length != 0 || controller.text.isNotEmpty
-              ? new ListView.builder(
-              itemCount: _searchresult.length,
-              itemBuilder: (context, i) {
-                return Card(
-                  margin: EdgeInsets.all(12.0),
-                  elevation: 5.0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: ListTile(
-                      title: Text(_searchresult[i].description != null
-                          ? _searchresult[i].description
-                          : 'ff'),
-                      subtitle: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 3.0, vertical: 4),
-                        child: Text(_searchresult[i].category),
-                      ),
-                      leading: Text(_searchresult[i].number),
-                      trailing: Text(_searchresult[i].status),
-                      dense: true,
-                    ),
-                  ),
-                );
-              })
-              : ListView.builder(
-              itemCount: _userDetails.length,
-              itemBuilder: (context, i) {
-                return Card(
-                  margin: EdgeInsets.all(12.0),
-                  elevation: 5.0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: ListTile(
-                      title: Text(_userDetails[i].description.toString()),
-                      subtitle: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 3.0,horizontal:4.0 ),
-                        child: Text(_userDetails[i].category.toString()),
-                      ),
-
-                      leading: Text(_userDetails[i].number),
-                      trailing: Text(_userDetails[i].status),
-                      dense: true,
-                    ),
-                  ),
-                );
-              }),
-        ),
-      ],
+      ),
     );
   }
 

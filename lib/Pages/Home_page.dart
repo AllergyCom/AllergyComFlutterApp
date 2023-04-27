@@ -32,6 +32,7 @@ class _Home_pageState extends State<Home_page> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      backgroundColor: Colors.grey.shade200,
        body: Container(
          color: Color(0xffF4F5F9),
          padding: EdgeInsets.symmetric(horizontal: 17),
@@ -39,38 +40,37 @@ class _Home_pageState extends State<Home_page> {
            width: MediaQuery.of(context).size.width,
            child: Column(
              children: <Widget>[
-               Container(
-                 child: new Card(
-                   elevation: 0,
-                   shape: RoundedRectangleBorder(
-
-                     borderRadius: BorderRadius.circular(15.0),
-                   ),
-                   margin: EdgeInsets.only( top: 10),
-                   child: Padding(
-                     padding: const EdgeInsets.all( 3.0),
-                     child: ListTile(
-                       dense: true,
-
-                       title: TextField(
-                         controller: controller,
-                         decoration: InputDecoration(
-                           border: InputBorder.none,
-                           prefixIcon: Icon(Icons.search),
-                           filled: false,
-                           hintText: 'search',
-                         ),
-                         onChanged: onChangedtext,
-                       ),
-
-                       trailing: new IconButton(
-                         icon: new Icon(Icons.cancel),
-                         onPressed: () {
-                           controller.clear();
-                           onChangedtext('');
-                         },
-                       ),
+               Padding(
+                 padding: const EdgeInsets.fromLTRB(4.0,15,4.0,0),
+                 child: Container(
+                   child: new Card(
+                     elevation: 0,
+                     shape: RoundedRectangleBorder(
+                       borderRadius: BorderRadius.circular(15.0),
                      ),
+                     child:  ListTile(
+                         dense: true,
+
+                         title: TextField(
+                           controller: controller,
+                           decoration: InputDecoration(
+                             border: InputBorder.none,
+                             prefixIcon: Icon(Icons.search),
+                             filled: false,
+                             hintText: 'search',
+                           ),
+                           onChanged: onChangedtext,
+                         ),
+
+                         trailing: new IconButton(
+                           icon: new Icon(Icons.cancel),
+                           onPressed: () {
+                             controller.clear();
+                             onChangedtext('');
+                           },
+                         ),
+                       ),
+
                    ),
                  ),
                ),

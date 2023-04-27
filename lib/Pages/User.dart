@@ -46,6 +46,7 @@ class _UserState extends State<User> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.grey.shade200,
         body: SingleChildScrollView(
       child: Center(
         child: Container(
