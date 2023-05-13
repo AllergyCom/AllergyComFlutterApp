@@ -85,6 +85,57 @@ Future<List<dynamic>> getBalance(Web3Client ethClient) async {
   var data = result;
   return data[0];
 }
+
+// Future<List<dynamic>> voteContent(int contentId, bool vote, Web3Client ethClient) async {
+//   var response = await ask(
+//     'voteContent',
+//     [BigInt.from(contentId)],
+//     ethClient,
+//   );
+//   print('Content $contentId vote $vote added successfully');
+//   return response;
+// }
+
+Future<String> voteContent(int contentId, bool vote, Web3Client ethClient) async {
+  var response = await callFunction(
+    'voteContent',
+    [BigInt.from(contentId)],
+    ethClient,
+    infuraAllergyCom_privateKey,
+  );
+  print('Content $contentId vote $vote added successfully');
+  return response;
+}
+// Future<List<dynamic>> registerUser(String username,String password, Web3Client ethClient) async {
+  
+//   var response = await ask(
+//     'registerUser',
+//     [username, password],
+//     ethClient,
+//   );
+//   if (response.length > 0) {
+//     return response;
+//   } else {
+//     throw Exception('registerUser failed');
+//   }
+// }
+Future<String> registerUser(
+    String username,
+    String password,
+    Web3Client ethClient
+    ) async {
+  var response = await callFunction(
+    'registerUser',
+    [username, password],
+    ethClient,
+    infuraAllergyCom_privateKey,
+  );
+  print('User registered successfully');
+  return response;
+}
+
+
+
 Future<List> getContentLength(Web3Client ethClient) async {
   List<dynamic> result = await ask('getContentLength', [], ethClient);
   return result;

@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:http/http.dart';
 
 import '../ServiceBlockChain/eth_utils.dart';
 import '../constant/Constant.dart';
+
 class CommunityBlockChain extends StatefulWidget {
   const CommunityBlockChain({Key key}) : super(key: key);
 
@@ -29,19 +29,18 @@ class _CommunityBlockChainState extends State<CommunityBlockChain> {
         TextEditingController descController = TextEditingController();
 
         return AlertDialog(
-
           title: Text('Create New Content'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: titleController,
-                decoration:InputDecoration(
-            hintText: 'Title',
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.deepPurple),
-            ),
-          ),
+                decoration: InputDecoration(
+                  hintText: 'Title',
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.deepPurple),
+                  ),
+                ),
               ),
               TextField(
                 controller: descController,
@@ -57,8 +56,10 @@ class _CommunityBlockChainState extends State<CommunityBlockChain> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('Cancel',style: TextStyle(color: Colors.deepPurple),),
-
+              child: Text(
+                'Cancel',
+                style: TextStyle(color: Colors.deepPurple),
+              ),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -72,16 +73,14 @@ class _CommunityBlockChainState extends State<CommunityBlockChain> {
                 setState(() {
                   _isLoading = false; // Set loading state to true
                 });
-                setState(() {
-
-                });
+                setState(() {});
                 Navigator.pop(context);
               },
               child: Text('Submit'),
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.deepPurple),
               ),
-
             ),
           ],
         );
@@ -89,178 +88,195 @@ class _CommunityBlockChainState extends State<CommunityBlockChain> {
     );
   }
 
-@override
+  @override
   void initState() {
-  httpClient = Client();
-  ethClient = Web3Client(infura_url, httpClient );
-  super.initState();
-  getBalance(ethClient).then((data) => {
-    print("neeee $data"),
-    setState(() {
-      _myData = data;
-    }),
-    print("neeee $_myData"),
+    httpClient = Client();
+    ethClient = Web3Client(infura_url, httpClient);
+    super.initState();
+    String username = "ahmed";
+    String password = "test";
+    getBalance(ethClient).then((data) => {
+          print("neeee $data"),
+          setState(() {
+            _myData = data;
+          }),
+          print("neeeed $_myData"),
+        });
+    // registerUser(username, password, ethClient)
+    //     .then((data) => {
+    //           print("Registration successful: $data"),
+    //           // Do something with the returned data if necessary
+    //         })
+    //     .catchError((error) => {
+    //           print("Registration failed: $error"),
+    //           // Handle the error if necessary
+    //         });
+    print("size : ${_myData.length}");
+  }
 
-  });
-  print("size : ${_myData.length}");
-
-
-}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
-      body: _isLoading ?
-      Center(child: CircularProgressIndicator())
-          :
-      Center(
-        child: Center(
-          child: Container(
-            child: ListView.builder(
-                itemCount: _myData.length,
-                itemBuilder: (BuildContext context,int index){
-                  return  Center(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(10,5,5,4),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Center(
-                              child: Container(
-                                // color: Colors.green,
-                                width :  double.infinity,
-                                height :  150,
-                                child: Row(
-                                  children: [
-                                    Card(
-                                      elevation: 0,
-                                      color: Colors.white10.withOpacity(0.4),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
-                                      child: Align(
-                                        alignment: Alignment.bottomLeft,
-                                        child: Container(
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                            children: [
-                                              IconButton(
-
-                                                onPressed: (){
-                                                  setState(() {
-                                                    if(votes[index] !=1) {
-                                                      votes[index]+=1;
-                                                    }
-                                                  });
-                                                },
-                                                icon: Icon(Icons.arrow_upward),
-
-
-                                              ),
-                                              Text(
-                                                  "${votes[index]}"
-                                              ),
-                                              IconButton(
-                                                onPressed: (){
-                                                  setState(() {
-                                                    if(votes[index] != 0) {
-                                                      votes[index]-=1;
-                                                    }
-                                                  });
-                                                },
-                                                icon: Icon(Icons.arrow_downward),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(width: 5,),
-                                    Expanded(
-                                      flex: 1,
-                                      child:
-                                      SizedBox(
-                                        width: MediaQuery.of(context).size.width,
-                                        child: Card(
+      body: _isLoading
+          ? Center(child: CircularProgressIndicator())
+          : Center(
+              child: Center(
+                child: Container(
+                  child: ListView.builder(
+                      itemCount: _myData.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Center(
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(10, 5, 5, 4),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Center(
+                                  child: Container(
+                                    // color: Colors.green,
+                                    width: double.infinity,
+                                    height: 150,
+                                    child: Row(
+                                      children: [
+                                        Card(
+                                          elevation: 0,
+                                          color:
+                                              Colors.white10.withOpacity(0.4),
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(30),
                                           ),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              SizedBox(
-                                                height: 30,
-                                                child: Container(
-                                                  padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
-                                                  child: Row(
-                                                    children: [
-                                                      Text(
-                                                        "Tile : ",
-                                                        textAlign: TextAlign.start,
-                                                        style: TextStyle(fontSize: 15,
-                                                          fontWeight: FontWeight.w300,
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        "${_myData[index][1]}",
-                                                        textAlign: TextAlign.start,
-                                                        style: TextStyle(fontSize: 17,
-                                                          fontWeight: FontWeight.bold,
-                                                        ),
-                                                      ),
-                                                    ],
-
+                                          child: Align(
+                                            alignment: Alignment.bottomLeft,
+                                            child: Container(
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  IconButton(
+                                                    onPressed: () async {
+                                                      setState(() {
+                                                        if (votes[index] != 1) {
+                                                          votes[index] += 1;
+                                                        }
+                                                      });
+                                                      await voteContent(index,
+                                                          true, ethClient);
+                                                    },
+                                                    icon: Icon(
+                                                        Icons.arrow_upward),
                                                   ),
-                                                ),
+                                                  Text("${votes[index]}"),
+                                                  IconButton(
+                                                    onPressed: () async {
+                                                      setState(() {
+                                                        if (votes[index] != 0) {
+                                                          votes[index] -= 1;
+                                                        }
+                                                      });
+                                                      await voteContent(index,
+                                                          false, ethClient);
+                                                    },
+                                                    icon: Icon(
+                                                        Icons.arrow_downward),
+                                                  ),
+                                                ],
                                               ),
-                                              Container(
-                                                width: double.infinity,
-                                                height: 0.8, // Thickness
-                                                color: Colors.grey,
-                                              ),
-                                              Expanded(
-                                                child: Container(
-                                                  padding: EdgeInsets.fromLTRB(10, 11, 0, 5),
-                                                  child: Text(
-                                                        "${_myData[index][2]}",
-                                                        textAlign: TextAlign.start,
-                                                        style: TextStyle(fontSize: 14
-
-                                                        ),
-                                                      ),
-
-                                                ),
-                                              ),
-                                            ],
+                                            ),
                                           ),
                                         ),
-                                      ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Expanded(
+                                          flex: 1,
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            child: Card(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  SizedBox(
+                                                    height: 30,
+                                                    child: Container(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              10, 5, 0, 0),
+                                                      child: Row(
+                                                        children: [
+                                                          Text(
+                                                            "Tile : ",
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: TextStyle(
+                                                              fontSize: 15,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w300,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            "${_myData[index][1]}",
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: TextStyle(
+                                                              fontSize: 17,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    width: double.infinity,
+                                                    height: 0.8, // Thickness
+                                                    color: Colors.grey,
+                                                  ),
+                                                  Expanded(
+                                                    child: Container(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              10, 11, 0, 5),
+                                                      child: Text(
+                                                        "${_myData[index][2]}",
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        style: TextStyle(
+                                                            fontSize: 14),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-
-                                  ],
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
-
-                          ],
-                        ),
-                      ),
-                    );
-
-                }
-
+                          ),
+                        );
+                      }),
+                ),
+              ),
             ),
-
-
-          ),
-        ),
-
-
-      ),
-
-
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.deepPurple,
         onPressed: () => _showCreateContentDialog(),
@@ -269,5 +285,4 @@ class _CommunityBlockChainState extends State<CommunityBlockChain> {
       ),
     );
   }
-
 }

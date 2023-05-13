@@ -53,7 +53,7 @@ class _CalorieTrackerPageState extends State<CalorieTrackerPage> {
 
   Map<String, String> extractMealNamesWithTypes(String input) {
     RegExp regExp = RegExp(
-      r"I had ((\w).*)* for (breakfast|lunch|dinner)",
+      r"I had ((\w).) for (breakfast|lunch|dinner)",
       multiLine: true,
       caseSensitive: false,
       dotAll: true,
@@ -78,60 +78,66 @@ class _CalorieTrackerPageState extends State<CalorieTrackerPage> {
      backgroundColor: Colors.grey[100],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: AvatarGlow(
-          endRadius: 75,
-          animate: isListening,
-          duration: Duration(seconds: 20),
-          glowColor: Colors.deepPurpleAccent,
-          repeat: true,
-          repeatPauseDuration: Duration(seconds: 10),
-          showTwoGlows: true,
-          child: GestureDetector(
-            child: CircleAvatar(
-              radius: 35,
-              backgroundColor: Colors.deepPurple[500],
-              child: isListening
-                  ? Icon(
-                Icons.mic,
-                color: Colors.white,
-              )
-                  : Icon(
-                Icons.mic_none,
-                color: Colors.white,
-              ),
+        endRadius: 75,
+        animate: isListening,
+        duration: Duration(seconds: 20),
+        glowColor: Colors.deepPurpleAccent,
+        repeat: true,
+        repeatPauseDuration: Duration(seconds: 10),
+        showTwoGlows: true,
+        child: GestureDetector(
+          child: CircleAvatar(
+            radius: 35,
+            backgroundColor: Colors.deepPurple[500],
+            child: isListening
+                ? Icon(
+              Icons.mic,
+              color: Colors.white,
+            )
+                : Icon(
+              Icons.mic_none,
+              color: Colors.white,
             ),
-            onTapDown: (details) async {
-              if (!isListening) {
-                var availble = await speechToText.initialize();
-                if (availble) {
-                  setState(() {
-                    isListening = true;
-                    speechToText.listen(onResult: (result) {
-                      setState(() {
-                        text = result.recognizedWords;
-                      });
-                      // print(text);
+          ),
+          onLongPress: () async {
+            if (!isListening) {
+              var available = await speechToText.initialize();
+              if (available) {
+                setState(() {
+                  isListening = true;
+                  speechToText.listen(onResult: (result) {
+                    setState(() {
+                      text = result.recognizedWords;
                     });
                   });
-                }
+                });
               }
-            },
-            onTapUp: (details) {
-              setState(() async {
+            }
+          },
+          onLongPressEnd: (details) async {
+            if (isListening) {
+              setState(() {
                 isListening = false;
-                res = extractMealNamesWithTypes(text);
-                print(res);
-                final meal = {'breakfast': res.toString()};
-                final calories = await getCalories(meal);
-                if (calories != null) {
+              });
+
+              speechToText.stop();
+
+              res = extractMealNamesWithTypes(text);
+              print(res);
+              final meal = {'breakfast': res.toString()};
+              final calories = await getCalories(meal);
+              if (calories != null) {
+                setState(() {
                   print('Estimated calories: $calories');
                   res_calorie = calories;
-                } else {
-                  print('Unable to estimate calories');
-                }
-              });
-              speechToText.stop();
-            },
-          )),
+                });
+              } else {
+                print('Unable to estimate calories');
+              }
+            }
+          },
+        ),
+      ),
 
       body: Center(
         child: Column(
