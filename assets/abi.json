@@ -101,6 +101,19 @@
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "_contentIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "downvoteContent",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "string",
 				"name": "_username",
 				"type": "string"
@@ -193,9 +206,9 @@
 				"type": "string"
 			},
 			{
-				"internalType": "uint256",
+				"internalType": "int256",
 				"name": "votes",
-				"type": "uint256"
+				"type": "int256"
 			},
 			{
 				"internalType": "bool",
@@ -228,9 +241,9 @@
 						"type": "string"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "int256",
 						"name": "votes",
-						"type": "uint256"
+						"type": "int256"
 					},
 					{
 						"internalType": "bool",
@@ -334,9 +347,9 @@
 						"type": "string"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "int256",
 						"name": "votes",
-						"type": "uint256"
+						"type": "int256"
 					},
 					{
 						"internalType": "bool",
@@ -378,9 +391,9 @@
 				"type": "string"
 			},
 			{
-				"internalType": "uint256",
+				"internalType": "int256",
 				"name": "",
-				"type": "uint256"
+				"type": "int256"
 			}
 		],
 		"stateMutability": "view",
@@ -406,9 +419,9 @@
 				"type": "string"
 			},
 			{
-				"internalType": "uint256",
+				"internalType": "int256",
 				"name": "",
-				"type": "uint256"
+				"type": "int256"
 			}
 		],
 		"stateMutability": "view",

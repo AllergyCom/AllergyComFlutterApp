@@ -122,7 +122,8 @@ class _CalorieTrackerPageState extends State<CalorieTrackerPage> {
 
               speechToText.stop();
 
-              res = extractMealNamesWithTypes(text);
+              // res = extractMealNamesWithTypes(text);
+              
               print(res);
               final meal = {'breakfast': res.toString()};
               final calories = await getCalories(meal);

@@ -93,7 +93,7 @@ class _CommunityBlockChainState extends State<CommunityBlockChain> {
     httpClient = Client();
     ethClient = Web3Client(infura_url, httpClient);
     super.initState();
-    String username = "ahmed";
+    String username = "ahmed22";
     String password = "test";
     getBalance(ethClient).then((data) => {
           print("neeee $data"),
@@ -169,7 +169,7 @@ class _CommunityBlockChainState extends State<CommunityBlockChain> {
                                                     icon: Icon(
                                                         Icons.arrow_upward),
                                                   ),
-                                                  Text("${votes[index]}"),
+                                                  Text("${_myData[index][3]}"),
                                                   IconButton(
                                                     onPressed: () async {
                                                       setState(() {
@@ -177,7 +177,7 @@ class _CommunityBlockChainState extends State<CommunityBlockChain> {
                                                           votes[index] -= 1;
                                                         }
                                                       });
-                                                      await voteContent(index,
+                                                      await downvoteContent(index,
                                                           false, ethClient);
                                                     },
                                                     icon: Icon(

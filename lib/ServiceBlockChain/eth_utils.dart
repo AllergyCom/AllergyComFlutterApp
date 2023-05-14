@@ -106,6 +106,16 @@ Future<String> voteContent(int contentId, bool vote, Web3Client ethClient) async
   print('Content $contentId vote $vote added successfully');
   return response;
 }
+Future<String> downvoteContent(int contentId, bool vote, Web3Client ethClient) async {
+  var response = await callFunction(
+    'downvoteContent',
+    [BigInt.from(contentId)],
+    ethClient,
+    infuraAllergyCom_privateKey,
+  );
+  print('Content $contentId vote $vote added successfully');
+  return response;
+}
 // Future<List<dynamic>> registerUser(String username,String password, Web3Client ethClient) async {
   
 //   var response = await ask(
