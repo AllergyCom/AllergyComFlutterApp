@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
-import 'package:minip/Pages/MyhomePageWelcome.dart';
-import 'package:minip/Pages/Welcome.dart';
 import 'package:minip/Pages/otp_login_page.dart';
 class onbording extends StatefulWidget {
   const onbording({Key key}) : super(key: key);

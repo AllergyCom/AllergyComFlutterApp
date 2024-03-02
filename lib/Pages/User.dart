@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
@@ -59,7 +58,7 @@ class _UserState extends State<User> {
                   height: 300,
                   color: Colors.grey[300],
                 ),
-              if (imageFile != null) Image.file(File(imageFile.path)),
+              Image.file(File(imageFile.path)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -68,8 +67,7 @@ class _UserState extends State<User> {
                     padding: const EdgeInsets.only(top: 10),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.grey,
+                        foregroundColor: Colors.grey, backgroundColor: Colors.white,
                         shadowColor: Colors.grey[400],
                         elevation: 10,
                         shape: RoundedRectangleBorder(
@@ -173,17 +171,11 @@ class _UserState extends State<User> {
       ),
     ]);
 
-    if (cropped != null) {
-      imageFile = XFile(cropped.path);
-      setState(() {});
-      getRecognisedText(
-          imageFile); // Call the getRecognisedText function with the cropped image
-    } else {
-      textScanning = false;
-      scannedText = "No image selected";
-      setState(() {});
+    imageFile = XFile(cropped.path);
+    setState(() {});
+    getRecognisedText(
+        imageFile); // Call the getRecognisedText function with the cropped image
     }
-  }
 
   void getImage(ImageSource source) async {
     try {

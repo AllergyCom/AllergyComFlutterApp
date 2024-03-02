@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:minip/Pages/MianPage.dart';
 import 'package:minip/Pages/MyhomePageWelcome.dart';
 import 'package:minip/Widgets/constants.dart';
-import 'dart:convert';
-import 'package:minip/Pages/User.dart';
-import 'package:http/http.dart' as http;
 
 class Welcome extends StatefulWidget {
   const Welcome({Key key}) : super(key: key);

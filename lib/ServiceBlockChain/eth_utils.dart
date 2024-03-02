@@ -1,5 +1,4 @@
 import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
 import 'package:web3dart/web3dart.dart';
 
 import '../constant/Constant.dart';
@@ -44,9 +43,6 @@ Future<String> callFunction(
     Web3Client ethClient,
     String privateKey
     ) async {
-  if (ethClient == null) {
-    throw Exception('ethClient is null. Please initialize it before calling callFunction.');
-  }
   EthPrivateKey credentials = EthPrivateKey.fromHex(privateKey);
   DeployedContract contract = await loadContract();
   final ethFunction = contract.function(funcname);
@@ -154,7 +150,7 @@ Future<List> getContentLength(Web3Client ethClient) async {
 Future<List<dynamic>> query(String functionName, List<dynamic> args) async {
   final contract = await loadContract();
   final ethFunction = contract.function(functionName);
-  final result = await ethClient?.call(
+  final result = await ethClient.call(
       contract: contract, function: ethFunction, params: args);
   return result;
 }

@@ -6,9 +6,6 @@ import 'package:minip/Pages/MyhomePageWelcome.dart';
 import 'package:pinput/pinput.dart';
 
 import 'package:sms_autofill/sms_autofill.dart';
-import 'package:snippet_coder_utils/FormHelper.dart';
-import 'package:snippet_coder_utils/ProgressHUD.dart';
-import 'package:snippet_coder_utils/hex_color.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -347,8 +344,7 @@ class _OTPVerifyPageState extends State<OTPVerifyPage> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  primary: Colors.deepPurple,
+                  elevation: 0, backgroundColor: Colors.deepPurple,
                 ),
                 child: const Padding(
                   padding: EdgeInsets.all(15.0),

@@ -124,15 +124,11 @@ class _CalorieTrackerPageState extends State<CalorieTrackerPage> {
               print(res);
               // final meal = {'breakfast': res.toString()};
               final calories = await getCalories(text);
-              if (calories != null) {
-                setState(() {
-                  print('Estimated calories: $calories');
-                  res_calorie = calories;
-                });
-              } else {
-                print('Unable to estimate calories');
-              }
-            }
+              setState(() {
+                print('Estimated calories: $calories');
+                res_calorie = calories;
+              });
+                        }
           },
         ),
       ),

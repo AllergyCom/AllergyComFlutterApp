@@ -93,8 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        primary: Colors.deepPurple,
+                        elevation: 0, backgroundColor: Colors.deepPurple,
                       ),
                       onPressed: _submitPhoneNumber,
                       child: Text('Submit'),

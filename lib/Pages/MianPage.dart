@@ -4,7 +4,6 @@ import 'package:minip/Pages/FoodAdditive_Page.dart';
 import 'package:minip/Pages/Home_page.dart';
 import 'package:minip/Pages/recipes_page.dart';
 
-import 'CommunityBlockChain.dart';
 import 'User.dart';
 
 class MainPage extends StatefulWidget {

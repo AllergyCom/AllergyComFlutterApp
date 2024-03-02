@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:minip/Pages/MianPage.dart';
 
 import '../Widgets/BottomButtonBar.dart';
 import 'CalorieTrackerPage.dart';
 import 'CommunityBlockChain.dart';
-import 'Welcome.dart';
 class MyhomePageWelcome extends StatefulWidget {
   const MyhomePageWelcome({Key key}) : super(key: key);
 
