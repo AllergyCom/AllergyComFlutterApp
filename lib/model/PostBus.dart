@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class PostBus {
-  String number;
-  String description;
-  String category;
-  String status;
+  late String number;
+  late String description;
+  late String category;
+  late String status;
 
-  PostBus({this.number, this.description, this.category, this.status});
+  PostBus({ required this.number, required this.description, required this.category, required this.status});
 
-  PostBus.fromJson(Map<String, dynamic> json) {
+  PostBus.fromJson(Map<dynamic, dynamic> json) {
     number = json['number'];
     description = json['description'];
     category = json['category'];

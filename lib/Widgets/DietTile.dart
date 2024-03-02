@@ -5,7 +5,7 @@ class DietTile extends StatelessWidget {
   final String launch;
   final String mealType;
 
-  const DietTile({Key key, this.breakfast, this.dinner, this.launch,this.mealType}) : super(key: key);
+  const DietTile({Key? key,required this.breakfast,required this.dinner,required this.launch,required this.mealType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

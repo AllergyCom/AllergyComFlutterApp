@@ -7,7 +7,7 @@ class BookTile extends StatelessWidget {
   final String title;
   final String url;
 
-  const BookTile({Key key, this.des, this.imgUrl, this.title, this.url})
+  const BookTile({Key? key, required this.des,required this.imgUrl,required this.title,required this.url})
       : super(key: key);
 
   @override

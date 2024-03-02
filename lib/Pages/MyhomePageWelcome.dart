@@ -7,7 +7,7 @@ import 'CalorieTrackerPage.dart';
 import 'CommunityBlockChain.dart';
 import 'Welcome.dart';
 class MyhomePageWelcome extends StatefulWidget {
-  const MyhomePageWelcome({Key key}) : super(key: key);
+  const MyhomePageWelcome({Key? key}) : super(key: key);
 
   @override
   State<MyhomePageWelcome> createState() => _MyhomePageWelcomeState();

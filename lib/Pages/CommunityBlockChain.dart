@@ -7,7 +7,7 @@ import '../ServiceBlockChain/eth_utils.dart';
 import '../constant/Constant.dart';
 
 class CommunityBlockChain extends StatefulWidget {
-  const CommunityBlockChain({Key key}) : super(key: key);
+  const CommunityBlockChain({Key? key}) : super(key: key);
 
   @override
   State<CommunityBlockChain> createState() => _CommunityBlockChainState();
@@ -16,9 +16,9 @@ class CommunityBlockChain extends StatefulWidget {
 class _CommunityBlockChainState extends State<CommunityBlockChain> {
   final title_Controller = TextEditingController();
   final desc_Controller = TextEditingController();
-  Client httpClient;
+  late Client httpClient;
   bool _isLoading = false;
-  Web3Client ethClient;
+  late Web3Client ethClient;
   var votes = List<int>.filled(100, 0);
   List<dynamic> _myData = [];
   double _value = 0.0;

@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../model/PostBus.dart';
 import '../providers/FoodAdditiveProvider.dart';
 class FoodAdditive_Page extends StatefulWidget {
-  const FoodAdditive_Page({Key key}) : super(key: key);
+  const FoodAdditive_Page({Key? key}) : super(key: key);
 
   @override
   _FoodAdditive_PageState createState() => _FoodAdditive_PageState();

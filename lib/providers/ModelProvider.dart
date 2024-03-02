@@ -8,8 +8,8 @@ import 'package:minip/model/ModelRecipe.dart';
 
 
 class ModelProvider extends ChangeNotifier {
-  List<ModelClass> lsitoftips;
-  List<ModelRecipe> lsitofRecipe;
+  late List<ModelClass> lsitoftips;
+  late List<ModelRecipe> lsitofRecipe;
 
   bool loadingState = false;
 

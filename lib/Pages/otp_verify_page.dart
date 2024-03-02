@@ -15,9 +15,9 @@ import 'package:http/http.dart' as http;
 
 class OTPVerifyPage extends StatefulWidget {
 
-  static bool isValid;
+  static bool? isValid;
   final phoneNumber;
-  const OTPVerifyPage({Key key, this.phoneNumber}) : super(key: key);
+  const OTPVerifyPage({Key? key, this.phoneNumber}) : super(key: key);
 
   @override
   _OTPVerifyPageState createState() => _OTPVerifyPageState();
@@ -37,7 +37,7 @@ class _OTPVerifyPageState extends State<OTPVerifyPage> {
   final int _otpCodeLength = 4;
   bool _enableButton = false;
   var autoFill;
-   FocusNode myFocusNode;
+   FocusNode? myFocusNode;
   bool isAPIcallProcess = false;
 
 

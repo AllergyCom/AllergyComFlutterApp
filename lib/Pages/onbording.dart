@@ -4,7 +4,7 @@ import 'package:minip/Pages/MyhomePageWelcome.dart';
 import 'package:minip/Pages/Welcome.dart';
 import 'package:minip/Pages/otp_login_page.dart';
 class onbording extends StatefulWidget {
-  const onbording({Key key}) : super(key: key);
+  const onbording({Key? key}) : super(key: key);
 
   @override
   _onbordingState createState() => _onbordingState();

@@ -19,7 +19,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  TabController _controller;
+  late TabController _controller;
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

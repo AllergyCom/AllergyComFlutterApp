@@ -4,7 +4,7 @@ class BottomButtonBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTabTapped;
 
-  BottomButtonBar({this.currentIndex, this.onTabTapped});
+  BottomButtonBar({required this.currentIndex, required this.onTabTapped});
 
   @override
   Widget build(BuildContext context) {

@@ -5,16 +5,17 @@ import 'package:google_ml_kit/google_ml_kit.dart';
 class OcrCamera extends StatefulWidget {
   final Function(List<String>) onFoodAdditivesDetected;
 
-  OcrCamera({this.onFoodAdditivesDetected});
+  OcrCamera({required this.onFoodAdditivesDetected});
 
   @override
   _OcrCameraState createState() => _OcrCameraState();
 }
 
 class _OcrCameraState extends State<OcrCamera> {
-  CameraController _cameraController;
-  CameraDescription _cameraDescription;
-  TextRecognizer _textRecognizer;
+  late CameraController _cameraController;
+  late CameraDescription _cameraDescription;
+
+  late TextRecognizer _textRecognizer;
 
   @override
   void initState() {
@@ -42,20 +43,24 @@ class _OcrCameraState extends State<OcrCamera> {
   }
 
   void _processImage(CameraImage image) async {
-    final inputImage = InputImage.fromBytes(
-      bytes: image.planes[0].bytes,
-      inputImageData: InputImageData(
-        size: Size(image.width.toDouble(), image.height.toDouble()),
-        imageRotation: InputImageRotation.rotation0deg,
-        planeData: image.planes.map((plane) {
-          return InputImagePlaneMetadata(
-            bytesPerRow: plane.bytesPerRow,
-            height: plane.height,
-            width: plane.width,
-          );
-        }).toList(),
+  final inputImageData = InputImageData(
+    size: Size(image.width.toDouble(), image.height.toDouble()),
+    imageRotation: InputImageRotation.rotation0deg,
+    inputImageFormat: InputImageFormat.yuv420, // Specify the format
+    planeData: image.planes.map(
+      (plane) => InputImagePlaneMetadata(
+        bytesPerRow: plane.bytesPerRow,
+        height: plane.height,
+        width: plane.width,
       ),
-    );
+    ),
+  );
+
+  // Use the created inputImageData in InputImage
+  final inputImage = InputImage.fromBytes(
+    bytes: image.planes[0].bytes,
+    inputImageData: inputImageData,
+  );
 
     final RecognizedText recognisedText =
         await _textRecognizer.processImage(inputImage);

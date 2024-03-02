@@ -19,9 +19,9 @@ class User extends StatefulWidget {
 
 class _UserState extends State<User> {
   bool textScanning = false;
-  XFile imageFile;
+  late XFile imageFile;
   String statusText = "";
-  CroppedFile croppedFile;
+  late CroppedFile croppedFile;
   String scannedText = "";
 
   // static List<Nutrient> _userDetails = [];
@@ -151,33 +151,32 @@ class _UserState extends State<User> {
   }
 
   void cropImage(XFile image) async {
-    CroppedFile cropped = await ImageCropper()
-        .cropImage(sourcePath: image.path, aspectRatioPresets: [
-      CropAspectRatioPreset.square,
-      CropAspectRatioPreset.ratio3x2,
-      CropAspectRatioPreset.original,
-      CropAspectRatioPreset.ratio4x3,
-      CropAspectRatioPreset.ratio16x9
-    ], uiSettings: [
-      AndroidUiSettings(
+    CroppedFile? cropped = await ImageCropper().cropImage(
+      sourcePath: image.path,
+      aspectRatioPresets: [
+        CropAspectRatioPreset.square,
+        CropAspectRatioPreset.ratio3x2,
+        CropAspectRatioPreset.original,
+        CropAspectRatioPreset.ratio4x3,
+        CropAspectRatioPreset.ratio16x9
+      ],
+      uiSettings: [
+        AndroidUiSettings(
           toolbarTitle: 'Cropper',
           toolbarColor: Colors.deepOrange,
           toolbarWidgetColor: Colors.white,
           initAspectRatio: CropAspectRatioPreset.original,
-          lockAspectRatio: false),
-      IOSUiSettings(
-        title: 'Cropper',
-      ),
-      WebUiSettings(
-        context: context,
-      ),
-    ]);
+          lockAspectRatio: false,
+        ),
+        IOSUiSettings(title: 'Cropper'),
+        WebUiSettings(context: context),
+      ],
+    );
 
     if (cropped != null) {
       imageFile = XFile(cropped.path);
       setState(() {});
-      getRecognisedText(
-          imageFile); // Call the getRecognisedText function with the cropped image
+      getRecognisedText(imageFile);
     } else {
       textScanning = false;
       scannedText = "No image selected";
@@ -200,7 +199,7 @@ class _UserState extends State<User> {
       }
     } catch (e) {
       textScanning = false;
-      imageFile = null;
+      imageFile = null as XFile;
       scannedText = "Error occured while scanning";
       setState(() {});
     }

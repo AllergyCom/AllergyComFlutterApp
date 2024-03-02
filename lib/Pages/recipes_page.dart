@@ -82,8 +82,7 @@ class _recipes_pageState extends State<recipes_page> {
                     ),) :  Expanded(
                       child:_searchList.length != 0 || controller.text.isNotEmpty
                           ?StaggeredGridView.countBuilder(
-                        staggeredTileBuilder: (index) =>
-                            StaggeredTile.fit(1), //cross axis cell count
+                        staggeredTileBuilder: (index) => StaggeredTile.fit(1), //cross axis cell count
                         mainAxisSpacing: 8, // vertical spacing between items
                         crossAxisSpacing: 8, // horizontal spacing between items
                         crossAxisCount: 2, // no. of virtual columns in grid
@@ -95,8 +94,7 @@ class _recipes_pageState extends State<recipes_page> {
 
                         strokeWidth: 2,
                       ),)  : StaggeredGridView.countBuilder(
-                        staggeredTileBuilder: (index) =>
-                            StaggeredTile.fit(1), //cross axis cell count
+                        staggeredTileBuilder: (index) =>  StaggeredTile.fit(1), //cross axis cell count
                         mainAxisSpacing: 8, // vertical spacing between items
                         crossAxisSpacing: 8, // horizontal spacing between items
                         crossAxisCount: 2, // no. of virtual columns in grid

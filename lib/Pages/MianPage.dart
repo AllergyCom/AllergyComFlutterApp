@@ -10,7 +10,7 @@ import 'User.dart';
 class MainPage extends StatefulWidget {
 
   const MainPage(
-      {Key key,})
+      {Key? key,})
       : super(key: key);
 
   @override
@@ -20,7 +20,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
   bool _loading = false;
-  TabController _controller;
+  late TabController _controller;
   @override
   void initState() {
     // TODO: implement initState

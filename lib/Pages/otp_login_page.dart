@@ -14,7 +14,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _phoneNumberController = TextEditingController();
-   String _otp;
+   late String _otp;
 
   Future<void> _sendOTP(String phoneNumber) async {
     final url =

@@ -6,7 +6,7 @@ import 'package:minip/Api/Server.dart';
 import 'package:minip/model/ModelRecipe.dart';
 
 class ModelRecipeProvider extends ChangeNotifier{
-  List<ModelRecipe> lsitofbooks;
+  late List<ModelRecipe> lsitofbooks;
 
   bool loadingState = false;
   getALLRecipe(List<ModelRecipe> listofModelCLASS) async {

@@ -17,7 +17,7 @@ class _CalorieTrackerPageState extends State<CalorieTrackerPage> {
   Future<int> getCalories(String meal) async {
     final prompt = "\"${meal}.\" based on this estimate the calories consumed and return on the number of calories only";
     print(prompt);
-    final apiKey = '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';
+    final apiKey = 'jOmmWHZzpSuRys8';
     final apiUrl =
         'https://api.openai.com/v1/engines/text-davinci-003/completions';
 
@@ -42,10 +42,11 @@ class _CalorieTrackerPageState extends State<CalorieTrackerPage> {
     final regex = RegExp(r'(\d+) calories', caseSensitive: false);
     final match = regex.firstMatch(text);
 
-    if (match != null) {
-      return int.parse(match.group(1));
+    final calories = match?.group(1);
+    if (calories != null) {
+      return int.parse(calories);
     } else {
-      print(text);
+      print('Unable to find calorie information in the response.');
       return -1; // or any other default value
     }
   }
@@ -77,13 +78,13 @@ class _CalorieTrackerPageState extends State<CalorieTrackerPage> {
       backgroundColor: Colors.grey[100],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: AvatarGlow(
-        endRadius: 75,
+        // endRadius: 75,
         animate: isListening,
         duration: Duration(seconds: 20),
         glowColor: Colors.deepPurpleAccent,
         repeat: true,
-        repeatPauseDuration: Duration(seconds: 10),
-        showTwoGlows: true,
+        // repeatPauseDuration: Duration(seconds: 10),
+        // showTwoGlows: true,
         child: GestureDetector(
           child: CircleAvatar(
             radius: 35,

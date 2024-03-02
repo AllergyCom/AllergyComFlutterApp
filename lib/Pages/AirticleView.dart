@@ -2,48 +2,42 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-class AirticleView extends StatefulWidget {
-  final String articleurl;
 
-  const AirticleView({Key key,@required this.articleurl}) : super(key: key);
+class ArticleView extends StatefulWidget {
+  final String articleUrl; // Use consistent naming conventions
+
+  const ArticleView({Key? key, required this.articleUrl}) : super(key: key);
 
   @override
-  _AirticleViewState createState() => _AirticleViewState();
+  _ArticleViewState createState() => _ArticleViewState();
 }
 
-class _AirticleViewState extends State<AirticleView> {
-  bool _isloaded = true ;
-  final Completer<WebViewController> _controller =Completer<WebViewController>();
+class _ArticleViewState extends State<ArticleView> {
+  bool _isLoading = true; // Initialize as loading
+  late WebViewController _webViewController; // Use 'late' instead of a Completer
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white54,
-        title: Text("Details",style: TextStyle(color: Colors.black54),),
-
+        title: Text(
+          "Details",
+          style: TextStyle(color: Colors.black54),
+        ),
       ),
       body: Stack(
-        children:[
-          WebView(
-              javascriptMode: JavascriptMode.unrestricted,
-              initialUrl:widget.articleurl ,
-
-              onWebViewCreated: (WebViewController webViewController){
-                _controller.complete(webViewController);
-              },
-              onPageStarted: (finish){
-                setState(() {
-                  _isloaded = false;
-                });
-              },
+        children: [
+          //to add web view widget here
+          if (_isLoading)
+            Center(
+              child: CircularProgressIndicator(
+                color: Colors.black54,
+                backgroundColor: Colors.white54,
+                strokeWidth: 1.5,
+              ),
             ),
-
-          _isloaded ? Center(child: CircularProgressIndicator(
-            color: Colors.black54,
-            backgroundColor: Colors.white54,
-            strokeWidth: 1.5,
-          ),):Stack(),
-        ]
+        ],
       ),
     );
   }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class Nutrient{
 
-   String prediction;
-  Nutrient({this.prediction});
+  late String prediction;
+  Nutrient({required this.prediction});
 
 
 
